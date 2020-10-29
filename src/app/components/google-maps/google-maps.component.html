@@ -2,6 +2,7 @@
             [width]="width"
             [center]="center"
             [zoom]="zoom"
+            [options]="mapOptions"
             (mapClick)="addMarker($event)">
   <map-marker *ngFor="let markerPosition of markerPositions"
               [position]="markerPosition"
