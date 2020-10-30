@@ -1,1 +1,14 @@
-<app-google-maps></app-google-maps>
+<div>
+    <app-navbar></app-navbar>
+</div>
+
+<div>
+<mat-drawer-container class="example-container">
+    <mat-drawer-content>
+        <app-google-maps (updateMarker)="updateCurrentMarker($event)"></app-google-maps>
+    </mat-drawer-content>
+    <mat-drawer mode="side" position="end" opened>
+        <app-card-side-bar [selectedMeteorite]="selectedMeteorite"></app-card-side-bar>
+    </mat-drawer>
+  </mat-drawer-container>
+</div>

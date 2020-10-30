@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Meteorite } from 'src/app/models/meteorites';
 import { MeteoriteService } from '../../services/meteorite-service.service';
@@ -10,19 +10,19 @@ import { mapStyle } from './maps-style';
   styleUrls: ['./google-maps.component.scss']
 })
 export class GoogleMapsComponent implements OnInit {
+  @Output() updateMarker = new EventEmitter<Meteorite>();
   height: number;
   width: number;
   center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
   zoom = 4;
   mapTypeStyle: google.maps.MapTypeStyle[] = mapStyle;
   mapOptions: google.maps.MapOptions = {styles: this.mapTypeStyle};
-  // markerIcon: google.maps.Icon = {
+  // markerIcon: google.maps.Icon = { TODO add nicer marker
   //   url: 'assets/meteorite-maps-marker.png',
   //   scaledSize: new google.maps.Size(32, 32)
-
   // };
   markerOptions: google.maps.MarkerOptions = {draggable: false};
-  markerPositions: google.maps.LatLng[] = [];
+  meteorites: Meteorite[] = [];
 
   constructor(private meteoriteApi: MeteoriteService) { }
 
@@ -33,13 +33,13 @@ export class GoogleMapsComponent implements OnInit {
       res.forEach(meteorite => {
         const meteoriteRef = new Meteorite();
         Object.assign(meteoriteRef, meteorite);
-        this.markerPositions.push(meteoriteRef.getLatLang(meteoriteRef.GeoLocation));
+        this.meteorites.push(meteoriteRef);
       });
     });
   }
 
-  addMarker(event: google.maps.MouseEvent): void {
-    this.markerPositions.push(event.latLng);
+  emitCurrentMarker($event): void {
+    this.updateMarker.emit($event);
   }
 
 }

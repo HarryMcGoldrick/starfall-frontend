@@ -2,9 +2,10 @@
             [width]="width"
             [center]="center"
             [zoom]="zoom"
-            [options]="mapOptions"
-            (mapClick)="addMarker($event)">
-  <map-marker *ngFor="let markerPosition of markerPositions"
-              [position]="markerPosition"
-              [options]="markerOptions"></map-marker>
+            [options]="mapOptions">
+  <map-marker *ngFor="let meteorite of meteorites"
+              [position]="meteorite.getLatLang(meteorite.GeoLocation)"
+              [options]="markerOptions"
+              (mapClick)="emitCurrentMarker(meteorite)"
+              ></map-marker>
 </google-map>
