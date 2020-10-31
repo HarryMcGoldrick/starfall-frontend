@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Meteorite } from 'src/app/models/meteorites';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-map-page',
+  templateUrl: './map-page.component.html',
+  styleUrls: ['./map-page.component.scss']
 })
-export class AppComponent implements OnInit {
+export class MapPageComponent implements OnInit {
   title = 'starfall';
   selectedMeteorite: Meteorite;
   constructor() { }
@@ -17,4 +17,5 @@ export class AppComponent implements OnInit {
   updateCurrentMarker(marker: Meteorite): void {
     this.selectedMeteorite = marker;
   }
+
 }
