@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,7 +21,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { MapPageComponent } from './pages/map-page/map-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
-
+import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
 
 
 @NgModule({
@@ -50,7 +50,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     MatButtonModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

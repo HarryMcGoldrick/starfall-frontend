@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Meteorite } from 'src/app/models/meteorites';
+import { Meteorite } from 'src/app/models/meteorite';
 import { MeteoriteService } from '../../services/meteorite-service.service';
 import { mapStyle } from './maps-style';
 

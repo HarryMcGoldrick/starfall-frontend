@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meteorite } from 'src/app/models/meteorites';
+import { Meteorite } from 'src/app/models/meteorite';
 
 @Component({
   selector: 'app-map-page',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Meteorite } from '../../models/meteorites';
+import { Meteorite } from '../../models/meteorite';
 
 @Component({
   selector: 'app-card-side-bar',
