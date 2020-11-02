@@ -17,7 +17,7 @@ export class GoogleMapsComponent implements OnInit {
   zoom = 4;
   mapTypeStyle: google.maps.MapTypeStyle[] = mapStyle;
   mapOptions: google.maps.MapOptions = {styles: this.mapTypeStyle};
-  // markerIcon: google.maps.Icon = { TODO add nicer marker
+  // TODO markerIcon: google.maps.Icon = { add nicer marker
   //   url: 'assets/meteorite-maps-marker.png',
   //   scaledSize: new google.maps.Size(32, 32)
   // };
