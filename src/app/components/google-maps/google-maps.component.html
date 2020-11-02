@@ -1,11 +1,14 @@
-<google-map [height]="height"
-            [width]="width"
-            [center]="center"
-            [zoom]="zoom"
-            [options]="mapOptions">
-  <map-marker *ngFor="let meteorite of meteorites"
-              [position]="meteorite.getLatLang(meteorite.GeoLocation)"
-              [options]="markerOptions"
-              (mapClick)="emitCurrentMarker(meteorite)"
-              ></map-marker>
+<google-map
+  [height]="height"
+  [width]="width"
+  [center]="center"
+  [zoom]="zoom"
+  [options]="mapOptions"
+>
+  <map-marker
+    *ngFor="let meteorite of meteorites"
+    [position]="meteorite.getLatLang(meteorite.GeoLocation)"
+    [options]="markerOptions"
+    (mapClick)="emitCurrentMarker(meteorite)"
+  ></map-marker>
 </google-map>

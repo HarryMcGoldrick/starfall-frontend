@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user';
-import { LoginService } from '../../services/login-service.service';
+import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -20,17 +21,19 @@ export class LoginFormComponent implements OnInit {
     ]),
   });
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    // TODO add auth service and send request
-    const user = new User();
+  onSubmit(): void {
     const { username, password } = this.loginForm.value;
-    this.loginService.login(username, password).subscribe(res => console.log(res));
+    this.loginService.login(username, password).subscribe(res => {
+      window.location.reload();
+      // TODO figure out why google maps is not loading on redirects!
+      this.router.navigateByUrl('/');
+    }, error => console.log(error));
   }
 
 }
