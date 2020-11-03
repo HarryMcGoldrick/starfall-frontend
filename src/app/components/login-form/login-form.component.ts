@@ -30,8 +30,6 @@ export class LoginFormComponent implements OnInit {
   onSubmit(): void {
     const { username, password } = this.loginForm.value;
     this.loginService.login(username, password).subscribe(res => {
-      window.location.reload();
-      // TODO figure out why google maps is not loading on redirects!
       this.router.navigateByUrl('/');
     }, error => console.log(error));
   }

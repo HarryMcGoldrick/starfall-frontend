@@ -5,7 +5,7 @@
         (updateMarker)="updateCurrentMarker($event)"
       ></app-google-maps>
     </mat-drawer-content>
-    <mat-drawer mode="side" position="end">
+    <mat-drawer mode="side" position="end" [opened]="opened">
       <app-card-side-bar
         [selectedMeteorite]="selectedMeteorite"
       ></app-card-side-bar>

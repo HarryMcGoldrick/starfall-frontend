@@ -40,6 +40,4 @@ export class GoogleMapsComponent implements OnInit {
   emitCurrentMarker($event): void {
     this.updateMarker.emit($event);
   }
-
-
 }

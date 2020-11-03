@@ -6,7 +6,8 @@ import { MapPageComponent } from './pages/map-page/map-page.component';
 
 const routes: Routes = [
   { path: '', component: MapPageComponent },
-  { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard] }
+  { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard] },
+  { path: '**', component: MapPageComponent } // TODO 404 page
 ];
 
 @NgModule({

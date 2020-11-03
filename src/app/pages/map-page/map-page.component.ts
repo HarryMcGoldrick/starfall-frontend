@@ -9,10 +9,10 @@ import { Meteorite } from 'src/app/models/meteorite';
 export class MapPageComponent implements OnInit {
   title = 'starfall';
   selectedMeteorite: Meteorite;
+  opened = true;
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   updateCurrentMarker(marker: Meteorite): void {
     this.selectedMeteorite = marker;
