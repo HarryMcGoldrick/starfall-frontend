@@ -18,7 +18,7 @@ export class LoginService {
       username,
       password
     };
-    return this.http.post<any>(this.API_URL + '/login', body).pipe(
+    return this.http.post<any>(`${this.API_URL}/login`, body).pipe(
       map(res => {
         this.userService.updateCurrentUser(new User(username));
         localStorage.setItem('id_token', JSON.stringify(res.token));
@@ -28,7 +28,12 @@ export class LoginService {
   }
 
   logout(): void {
-    this.userService.removeCurrentUser();
+    this.http.post(`${this.API_URL}/logout`, {}).pipe(
+      map(res => {
+        this.userService.removeCurrentUser();
+        return res;
+      })
+    );
   }
 
 }

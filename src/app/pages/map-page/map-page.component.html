@@ -8,6 +8,7 @@
     <mat-drawer mode="side" position="end" [opened]="opened">
       <app-card-side-bar
         [selectedMeteorite]="selectedMeteorite"
+        (updateFavourite)="updateFavourite($event)"
       ></app-card-side-bar>
     </mat-drawer>
   </mat-drawer-container>

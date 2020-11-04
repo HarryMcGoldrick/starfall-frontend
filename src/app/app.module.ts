@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input/';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './pages/app/app.component';
@@ -34,7 +35,7 @@ import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
     MapPageComponent,
     LoginPageComponent,
     LoginFormComponent
-    ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,9 +49,10 @@ import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
     MatInputModule,
     FlexLayoutModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true } ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

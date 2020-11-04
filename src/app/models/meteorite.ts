@@ -3,12 +3,13 @@ export class Meteorite {
     name: string;
     GeoLocation: string;
     year;
+    favourite?: boolean;
 
     getLatLang(geolocation: string): any {
         geolocation = geolocation.replace('(', '');
         geolocation = geolocation.replace(')', '');
         geolocation = geolocation.replace(' ', '');
         const gelocationArray = geolocation.split(',');
-        return {lat: parseFloat(gelocationArray[0]), lng: parseFloat(gelocationArray[1])};
+        return { lat: parseFloat(gelocationArray[0]), lng: parseFloat(gelocationArray[1]) };
     }
 }
