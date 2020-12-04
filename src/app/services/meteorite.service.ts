@@ -22,6 +22,10 @@ export class MeteoriteService {
     return this.http.get<Meteorite[]>(`${this.API_URL}/meteorites`);
   }
 
+  getMeteorite(id): Observable<Meteorite> {
+    return this.http.get<Meteorite>(`${this.API_URL}/meteorites/${id}`);
+  }
+
   updateFavourite(meteoriteId: string): any {
     const body = {
       username: this.userService.currentUserValue.username,

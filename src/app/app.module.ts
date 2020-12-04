@@ -23,6 +23,8 @@ import { MapPageComponent } from './pages/map-page/map-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
+import { UserPageComponent } from './pages/user-page/user-page.component';
+import { CardFavouriteComponent } from './components/card-favourite/card-favourite.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
     RegistrationComponent,
     MapPageComponent,
     LoginPageComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    UserPageComponent,
+    CardFavouriteComponent
   ],
   imports: [
     BrowserModule,

@@ -2,8 +2,9 @@ export class Meteorite {
     _id: string;
     name: string;
     GeoLocation: string;
-    year;
+    year: string;
     favourite?: boolean;
+    recclass: string;
 
     getLatLang(geolocation: string): any {
         geolocation = geolocation.replace('(', '');

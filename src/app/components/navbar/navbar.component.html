@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <span>StarFall</span>
   <span class="spacer"></span>
-  <span *ngIf="user">{{ user.username }}</span>
+  <span *ngIf="user"><a href="/user/{{user.username}}">{{ user.username }}</a></span>
   <span *ngIf="!user"><a href="/login">Login</a></span>
 </mat-toolbar>

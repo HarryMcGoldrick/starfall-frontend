@@ -1,4 +1,4 @@
-<mat-card class="example-card" *ngIf="selectedMeteorite">
+<mat-card class="meteorite-card" *ngIf="selectedMeteorite">
   <mat-card-header>
     <mat-card-title>Name: {{ selectedMeteorite.name }}</mat-card-title>
     <mat-card-subtitle
@@ -10,17 +10,8 @@
       >
     </button>
   </mat-card-header>
-  <!-- <img mat-card-image src="" alt="Photo of a meteorite"> TODO revisit for nice image of classifications! -->
   <mat-card-content>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at ipsum
-      pharetra enim eleifend faucibus at vel enim. Nulla fringilla ut ligula
-      condimentum malesuada. Fusce mollis eros purus, sed pretium dui luctus
-      quis. Nullam venenatis porttitor leo, at dapibus dolor.
-    </p>
+    <h4><span *ngIf='selectedMeteorite.recclass'>Classification: {{ selectedMeteorite.recclass }}</span> <span *ngIf='selectedMeteorite["mass (g)"]' style="float: right">Mass: {{ selectedMeteorite["mass (g)"] }}g</span></h4>
   </mat-card-content>
-  <!-- <mat-card-actions> TODO revist this for favourite button!
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions> -->
+
 </mat-card>
