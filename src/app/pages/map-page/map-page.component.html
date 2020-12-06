@@ -1,31 +1,6 @@
 <div>
-  <app-navbar></app-navbar>
+  <app-navbar (searchLocation)="handleAddressChange($event)"></app-navbar>
 </div>
 <div>
   <app-google-maps [mapLocation]="mapLocation"></app-google-maps>
-
-  <!-- <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" position="start" [opened]="true">
-      <span>
-        <form [formGroup]="addressForm">
-          <mat-form-field>
-            <input
-              ngx-google-places-autocomplete
-              matInput
-              (onAddressChange)="handleAddressChange($event)"
-              #placesRef="ngx-places"
-              placeholder="Placeholder"
-              formControlName="address"
-            />
-          </mat-form-field>
-        </form>
-      </span>
-      <span>
-        <mat-slider></mat-slider>
-      </span>
-    </mat-drawer>
-    <mat-drawer-content>
-      <app-google-maps [mapLocation]="mapLocation"></app-google-maps>
-    </mat-drawer-content>
-  </mat-drawer-container> -->
 </div>

@@ -50,8 +50,7 @@ export class MapPageComponent implements OnInit {
   }
 
   handleAddressChange($event): void {
-    const location = { lat: $event.geometry.location.lat(), lng: $event.geometry.location.lng() };
-    this.mapLocation = location;
+    this.mapLocation = $event;
   }
 
 }
