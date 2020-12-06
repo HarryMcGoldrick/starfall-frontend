@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { Meteorite } from 'src/app/models/meteorite';
 import { MeteoriteService } from '../../services/meteorite.service';
 import { mapStyle } from './maps-style';
@@ -8,20 +9,28 @@ import { mapStyle } from './maps-style';
   templateUrl: './google-maps.component.html',
   styleUrls: ['./google-maps.component.scss']
 })
-export class GoogleMapsComponent implements OnInit {
-  @Output() updateMarker = new EventEmitter<Meteorite>();
+export class GoogleMapsComponent implements OnInit, OnChanges {
+  @ViewChild(GoogleMap) googleMaps: google.maps.Map;
+  @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
+
+  @Input() mapLocation;
+
+  selectedMeteorite: Meteorite;
+  meteorites: Meteorite[] = [];
+
   height: number;
   width: number;
-  center: google.maps.LatLngLiteral = { lat: 24, lng: 12 };
   zoom = 4;
+  center: google.maps.LatLngLiteral = { lat: 24, lng: 12 };
   mapTypeStyle: google.maps.MapTypeStyle[] = mapStyle;
   mapOptions: google.maps.MapOptions = { styles: this.mapTypeStyle };
+  markerOptions: google.maps.MarkerOptions = { draggable: false };
+  infoWindowOptions: google.maps.InfoWindowOptions = { maxWidth: 400 };
+
   // TODO markerIcon: google.maps.Icon = { add nicer marker
   //   url: 'assets/meteorite-maps-marker.png',
   //   scaledSize: new google.maps.Size(32, 32)
   // };
-  markerOptions: google.maps.MarkerOptions = { draggable: false };
-  meteorites: Meteorite[] = [];
 
   constructor(private meteoriteApi: MeteoriteService) { }
 
@@ -37,7 +46,16 @@ export class GoogleMapsComponent implements OnInit {
     });
   }
 
-  emitCurrentMarker($event): void {
-    this.updateMarker.emit($event);
+  openInfoWindow(meteorite: Meteorite, marker: MapMarker): void {
+    this.selectedMeteorite = meteorite;
+    this.infoWindow.open(marker);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.googleMaps && changes.mapLocation) {
+      // this.center = changes.mapLocation.currentValue;
+      this.googleMaps.panTo(changes.mapLocation.currentValue);
+      this.zoom = 10;
+    }
   }
 }

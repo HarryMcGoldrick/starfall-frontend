@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Meteorite } from '../../models/meteorite';
 
 @Component({
-  selector: 'app-card-side-bar',
-  templateUrl: './card-side-bar.component.html',
-  styleUrls: ['./card-side-bar.component.scss']
+  selector: 'app-card-info-window',
+  templateUrl: './card-info-window.component.html',
+  styleUrls: ['./card-info-window.component.scss']
 })
-export class CardSideBarComponent implements OnInit {
+export class CardInfoWindowComponent implements OnInit {
   @Input() selectedMeteorite: Meteorite;
   @Output() updateFavourite = new EventEmitter<string>();
 

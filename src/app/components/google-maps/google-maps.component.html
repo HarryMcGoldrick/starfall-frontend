@@ -6,9 +6,15 @@
   [options]="mapOptions"
 >
   <map-marker
+    #marker="mapMarker"
     *ngFor="let meteorite of meteorites"
     [position]="meteorite.getLatLang(meteorite.GeoLocation)"
     [options]="markerOptions"
-    (mapClick)="emitCurrentMarker(meteorite)"
+    (mapClick)="openInfoWindow(meteorite, marker)"
   ></map-marker>
+  <map-info-window [options]="infoWindowOptions">
+    <app-card-info-window
+      [selectedMeteorite]="selectedMeteorite"
+    ></app-card-info-window>
+  </map-info-window>
 </google-map>

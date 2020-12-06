@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Meteorite } from 'src/app/models/meteorite';
 import { MeteoriteService } from 'src/app/services/meteorite.service';
 import { UserService } from 'src/app/services/user.service';
@@ -6,13 +7,20 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-map-page',
   templateUrl: './map-page.component.html',
-  styleUrls: ['./map-page.component.scss']
+  styleUrls: ['./map-page.component.scss'],
 })
 export class MapPageComponent implements OnInit {
   title = 'starfall';
   selectedMeteorite: Meteorite;
-  opened = true;
+  opened = false;
   favourites: string[] = [];
+  mapLocation = {};
+
+  addressForm = new FormGroup({
+    address: new FormControl('', [
+      Validators.required,
+    ]),
+  });
 
   constructor(private userService: UserService, private meteoriteService: MeteoriteService) { }
 
@@ -25,6 +33,7 @@ export class MapPageComponent implements OnInit {
   }
 
   updateCurrentMarker(marker: Meteorite): void {
+    this.opened = true;
     this.selectedMeteorite = marker;
     if (this.favourites.length > 0) {
       if (this.favourites.includes(this.selectedMeteorite._id)) {
@@ -38,6 +47,11 @@ export class MapPageComponent implements OnInit {
   updateFavourite(meteoriteId: string): void {
     this.favourites.push(meteoriteId);
     this.meteoriteService.updateFavourite(meteoriteId);
+  }
+
+  handleAddressChange($event): void {
+    const location = { lat: $event.geometry.location.lat(), lng: $event.geometry.location.lng() };
+    this.mapLocation = location;
   }
 
 }

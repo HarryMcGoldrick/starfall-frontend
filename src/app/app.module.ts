@@ -12,12 +12,14 @@ import { MatInputModule } from '@angular/material/input/';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './pages/app/app.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CardSideBarComponent } from './components/card-side-bar/card-side-bar.component';
+import { CardInfoWindowComponent } from './components/card-info-window/card-info-window.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { MapPageComponent } from './pages/map-page/map-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -32,7 +34,7 @@ import { CardFavouriteComponent } from './components/card-favourite/card-favouri
     AppComponent,
     GoogleMapsComponent,
     NavbarComponent,
-    CardSideBarComponent,
+    CardInfoWindowComponent,
     RegistrationComponent,
     MapPageComponent,
     LoginPageComponent,
@@ -54,7 +56,9 @@ import { CardFavouriteComponent } from './components/card-favourite/card-favouri
     FlexLayoutModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    GooglePlaceModule,
+    MatSliderModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

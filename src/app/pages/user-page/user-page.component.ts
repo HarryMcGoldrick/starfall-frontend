@@ -10,7 +10,7 @@ import { MeteoriteService } from '../../services/meteorite.service';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit {
-  favouriteMeteorites: Meteorite[] = []
+  favouriteMeteorites: Meteorite[] = [];
 
   constructor(private meteoriteService: MeteoriteService) { }
 
@@ -19,13 +19,12 @@ export class UserPageComponent implements OnInit {
 
     this.meteoriteService.getFavourites(username).pipe(
       mergeMap(res => {
-        let favourites = res.map(id => this.meteoriteService.getMeteorite(id))
-        console.log(favourites)
-        return forkJoin(favourites)
+        const favourites = res.map(id => this.meteoriteService.getMeteorite(id));
+        return forkJoin(favourites);
       })
     ).subscribe(res => {
-      this.favouriteMeteorites = res
-    })
+      this.favouriteMeteorites = res;
+    });
   }
 
 }
