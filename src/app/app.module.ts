@@ -73,7 +73,7 @@ import { MapFilterComponent } from './components/map-filter/map-filter.component
     MatMomentDateModule,
     MatSlideToggleModule,
     MatAutocompleteModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }, { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
   bootstrap: [AppComponent]
