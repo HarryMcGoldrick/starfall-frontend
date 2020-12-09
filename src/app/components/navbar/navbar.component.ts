@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
   isMapPage = false;
   enableSearchBar = false;
   user: User;
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     if (window.location.href === 'http://localhost:4200/') {
@@ -36,5 +37,11 @@ export class NavbarComponent implements OnInit {
   handleAddressChange($event): void {
     const location = { lat: $event.geometry.location.lat(), lng: $event.geometry.location.lng() };
     this.searchLocation.emit(location);
+  }
+
+  logout() {
+    this.userService.removeCurrentUser();
+    this.router.navigateByUrl('/')
+    location.reload();
   }
 }
