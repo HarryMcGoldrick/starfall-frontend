@@ -1,6 +1,19 @@
 <div>
-  <app-navbar (searchLocation)="handleAddressChange($event)"></app-navbar>
+  <app-navbar
+    (searchLocation)="handleAddressChange($event)"
+    (enableFilterDrawer)="triggerFilterDrawer()"
+  ></app-navbar>
 </div>
-<div>
-  <app-google-maps [mapLocation]="mapLocation"></app-google-maps>
-</div>
+<mat-drawer-container>
+  <mat-drawer
+    mode="side"
+    position="start"
+    [opened]="opened"
+    style="max-width: 400px"
+  >
+    <app-map-filter></app-map-filter>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-google-maps [mapLocation]="mapLocation"></app-google-maps>
+  </mat-drawer-content>
+</mat-drawer-container>

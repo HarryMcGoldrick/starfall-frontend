@@ -1,0 +1,32 @@
+<div class="filter-fields-container">
+  <h3>Filter by fields</h3>
+  <hr />
+  <br />
+  <mat-form-field appearance="fill" class="filter-field">
+    <mat-label>Name</mat-label>
+    <input matInput type="text" />
+    <!-- TODO fix input to prevent negatives -->
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="filter-field">
+    <mat-label>Classification</mat-label>
+    <mat-select>
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="filter-field">
+    <mat-label>Mass</mat-label>
+    <input matInput type="number" />
+    <!-- TODO fix input to prevent negatives -->
+    <span matSuffix>grams</span>
+  </mat-form-field>
+  <mat-form-field appearance="fill" class="filter-field">
+    <mat-label>Date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Start date" />
+      <input matEndDate placeholder="End date" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+  <mat-slide-toggle value="test">Show only favourites?</mat-slide-toggle>
+</div>

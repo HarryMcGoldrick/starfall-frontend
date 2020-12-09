@@ -9,12 +9,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
   @Output() searchLocation = new EventEmitter<any>();
+  @Output() enableFilterDrawer = new EventEmitter<void>();
 
+  isMapPage = false;
   enableSearchBar = false;
   user: User;
   constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    if (window.location.href === 'http://localhost:4200/') {
+      this.isMapPage = true;
+    }
     this.userService.currentUser.subscribe(currentUser => {
       this.user = currentUser;
     });
@@ -22,6 +27,10 @@ export class NavbarComponent implements OnInit {
 
   triggerSearch(): void {
     this.enableSearchBar = !this.enableSearchBar;
+  }
+
+  triggerFilterBar(): void {
+    this.enableFilterDrawer.emit()
   }
 
   handleAddressChange($event): void {

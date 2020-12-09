@@ -1,8 +1,16 @@
 <mat-toolbar colour="secondary">
   <span *ngIf="!enableSearchBar">StarFall</span>
-  <span *ngIf="!enableSearchBar">
+
+  <span *ngIf="!enableSearchBar && isMapPage" class="icon-button">
     <button mat-icon-button (click)="triggerSearch()">
+      Search
       <mat-icon>search</mat-icon>
+    </button>
+  </span>
+  <span *ngIf="!enableSearchBar && isMapPage" class="icon-button">
+    <button mat-icon-button (click)="triggerFilterBar()">
+      Filter
+      <mat-icon>settings</mat-icon>
     </button>
   </span>
   <span *ngIf="!enableSearchBar" class="spacer"></span>
@@ -45,7 +53,3 @@
     </div>
   </div>
 </mat-toolbar>
-
-<!-- <mat-toolbar color="primary" *ngIf="enableSearchBar">
- 
-</mat-toolbar> -->

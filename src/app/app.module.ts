@@ -14,6 +14,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './pages/app/app.component';
@@ -27,6 +32,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { CardFavouriteComponent } from './components/card-favourite/card-favourite.component';
+import { MapFilterComponent } from './components/map-filter/map-filter.component';
 
 
 @NgModule({
@@ -40,7 +46,8 @@ import { CardFavouriteComponent } from './components/card-favourite/card-favouri
     LoginPageComponent,
     LoginFormComponent,
     UserPageComponent,
-    CardFavouriteComponent
+    CardFavouriteComponent,
+    MapFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,11 @@ import { CardFavouriteComponent } from './components/card-favourite/card-favouri
     ReactiveFormsModule,
     MatIconModule,
     GooglePlaceModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSlideToggleModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }],
   bootstrap: [AppComponent]

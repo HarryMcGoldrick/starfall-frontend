@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GoogleMapsComponent } from 'src/app/components/google-maps/google-maps.component';
 import { Meteorite } from 'src/app/models/meteorite';
 import { MeteoriteService } from 'src/app/services/meteorite.service';
 import { UserService } from 'src/app/services/user.service';
@@ -53,4 +54,7 @@ export class MapPageComponent implements OnInit {
     this.mapLocation = $event;
   }
 
+  triggerFilterDrawer(): void {
+    this.opened = !this.opened;
+  }
 }
