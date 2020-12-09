@@ -1,4 +1,61 @@
-.meteorite-card {
-    max-width: 400px;
-    padding: 10px;
-  }
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 150px;
+  width: 300px;
+  min-width: 250px;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #17141d;
+  box-shadow: -1rem 0 3rem #000;
+  transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-1rem);
+}
+
+.card:hover~.card {
+    transform: translateX(130px);
+}
+
+.card:not(:first-child) {
+    margin-left: -130px;
+}
+.card-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: 75px 5fr;
+  align-items: center;
+  margin: 3rem 0 0;
+}
+
+.card-header {
+  margin-bottom: auto;
+}
+
+.card-header p {
+  font-size: 14px;
+  margin: 0 0 1rem;
+  color: #7a7a8c;
+}
+
+.card-header h2 {
+  font-size: 20px;
+  margin: .25rem 0 auto;
+  cursor: pointer;
+  color: #fff;
+}
+
+.card-header h2:hover {
+  background: linear-gradient(90deg,#ff8a00,#e52e71);
+  text-shadow: none;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-info {
+  margin-top: 0.5rem;
+}

@@ -1,6 +1,10 @@
 <div>
   <app-navbar></app-navbar>
 </div>
-<div *ngFor="let favourite of favouriteMeteorites; index as i">
-  <app-card-favourite [FavouriteMeteorite]="favourite"></app-card-favourite>
-</div>
+
+<section class="card-list">
+  <app-card-favourite
+    *ngFor="let favourite of favouriteMeteorites; index as i"
+    [FavouriteMeteorite]="favourite"
+  ></app-card-favourite>
+</section>
