@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { MeteoriteService } from 'src/app/services/meteorite.service';
 
 @Component({
   selector: 'app-map-filter',
@@ -9,17 +12,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class MapFilterComponent implements OnInit {
   @Output() triggerFiltering = new EventEmitter<any>();
   @Output() triggerFavourites = new EventEmitter<any>();
+  options: string[] = [];
+  filteredOptions: Observable<string[]>;
   filterForm = new FormGroup({
     name: new FormControl(''),
     classification: new FormControl(''),
-    mass: new FormControl(''),
+    fall: new FormControl(''),
+    minMass: new FormControl(0, Validators.min(0)),
     startDate: new FormControl(''),
     endDate: new FormControl(''),
+    meteoriteAmount: new FormControl(100)
   });
 
-  constructor() { }
+  constructor(private meteoriteService: MeteoriteService) { }
 
   ngOnInit(): void {
+    this.meteoriteService.getAllClassifications().subscribe(value => {
+      this.options = value;
+    })
+    this.filteredOptions = this.filterForm.controls.classification.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
   }
 
   onSubmit(): void {
@@ -32,13 +46,19 @@ export class MapFilterComponent implements OnInit {
       endDate = new Date(this.filterForm.value.endDate._d).toISOString();
     }
 
-    const { name, classification, mass } = this.filterForm.value;
+    let { name } = this.filterForm.value;
+    const { classification, mass, meteoriteAmount, fall } = this.filterForm.value;
+
+    //Names in db are in title case
+    name = this.titleCase(name);
     const formBody = {
       name,
       classification,
+      fall,
       mass,
       startDate,
-      endDate
+      endDate,
+      meteoriteAmount
     }
 
     const queryString = this.createQueryStringFromObject(formBody)
@@ -58,5 +78,16 @@ export class MapFilterComponent implements OnInit {
         return obj[key]
       }
     }).map(([key, val]) => `${key}=${val}`).join("&");
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
+  }
+
+  //Covert a string to title case
+  titleCase(str) {
+    return str.replace(/\w\S*/g, (t) => { return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase() });
   }
 }

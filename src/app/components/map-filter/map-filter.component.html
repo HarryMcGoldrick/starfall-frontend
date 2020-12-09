@@ -7,20 +7,38 @@
     <mat-form-field appearance="fill" class="filter-field">
       <mat-label>Name</mat-label>
       <input matInput type="text" formControlName="name" />
-      <!-- TODO fix input to prevent negatives -->
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="filter-field">
       <mat-label>Classification</mat-label>
-      <mat-select formControlName="classification">
-        <mat-option value="option">Option</mat-option>
+      <input
+        type="text"
+        aria-label="Number"
+        matInput
+        formControlName="classification"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option"
+        >
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="filter-field">
+      <mat-label>Fall Type</mat-label>
+      <mat-select formControlName="fall">
+        <mat-option value="Found">Found</mat-option>
+        <mat-option value="Fell">Fell</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="filter-field">
-      <mat-label>Mass</mat-label>
-      <input matInput type="number" formControlName="mass" />
-      <!-- TODO fix input to prevent negatives -->
+      <mat-label>Minimum Mass</mat-label>
+      <input matInput type="number" formControlName="minMass" />
       <span matSuffix>grams</span>
     </mat-form-field>
 
@@ -40,7 +58,20 @@
 
     <hr />
     <br />
+    <div>
+      <div class="filter-field">
+        <h3>Amount of meteorites displayed</h3>
 
+        <mat-slider
+          class="filter-field"
+          thumbLabel
+          min="1"
+          max="5000"
+          value="100"
+          formControlName="meteoriteAmount"
+        ></mat-slider>
+      </div>
+    </div>
     <div>
       <button
         mat-raised-button
@@ -49,7 +80,7 @@
         type="submit"
         [disabled]="!filterForm.valid"
       >
-        Filter
+        Update
       </button>
     </div>
   </div>

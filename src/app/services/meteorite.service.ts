@@ -13,6 +13,10 @@ export class MeteoriteService {
   constructor(private http: HttpClient, private userService: UserService) { }
   API_URL = environment.apiUrl;
 
+  getAllClassifications(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.API_URL}/meteorites/classifications`);
+  }
+
   getFavourites(username: string): Observable<string[]> {
     const params = new HttpParams().set('username', username);
     return this.http.get<string[]>(`${this.API_URL}/meteorites/favourites`, { params });
