@@ -22,6 +22,10 @@ export class MeteoriteService {
     return this.http.get<Meteorite[]>(`${this.API_URL}/meteorites`);
   }
 
+  getAllMeteoritesFiltered(queryString): Observable<Meteorite[]> {
+    return this.http.get<Meteorite[]>(`${this.API_URL}/meteorites/filter?${queryString}`);
+  }
+
   getMeteorite(id): Observable<Meteorite> {
     return this.http.get<Meteorite>(`${this.API_URL}/meteorites/${id}`);
   }

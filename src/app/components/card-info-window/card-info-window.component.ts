@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 import { Meteorite } from '../../models/meteorite';
 
 @Component({
@@ -7,12 +8,14 @@ import { Meteorite } from '../../models/meteorite';
   styleUrls: ['./card-info-window.component.scss']
 })
 export class CardInfoWindowComponent implements OnInit {
+  isUserLoggedIn = false;
   @Input() selectedMeteorite: Meteorite;
   @Output() updateFavourite = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.isUserLoggedIn = this.userService.hasCurrentUser()
   }
 
   emitFavourite(meteoriteId: string): void {

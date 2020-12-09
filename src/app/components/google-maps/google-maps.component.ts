@@ -58,4 +58,15 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
       this.zoom = 10;
     }
   }
+
+  updateMeteoritesWithFilter(queryString): void {
+    this.meteorites = [];
+    this.meteoriteApi.getAllMeteoritesFiltered(queryString).subscribe(res => {
+      res.forEach(meteorite => {
+        const meteoriteRef = new Meteorite();
+        Object.assign(meteoriteRef, meteorite);
+        this.meteorites.push(meteoriteRef);
+      });
+    });
+  }
 }

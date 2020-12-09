@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./map-page.component.scss'],
 })
 export class MapPageComponent implements OnInit {
+  @ViewChild(GoogleMapsComponent) googleMapsComponent: GoogleMapsComponent;
   title = 'starfall';
   selectedMeteorite: Meteorite;
   opened = false;
@@ -56,5 +57,9 @@ export class MapPageComponent implements OnInit {
 
   triggerFilterDrawer(): void {
     this.opened = !this.opened;
+  }
+
+  updateMeteoritesWithFilter($event): void {
+    this.googleMapsComponent.updateMeteoritesWithFilter($event)
   }
 }

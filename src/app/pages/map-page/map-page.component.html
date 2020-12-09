@@ -11,7 +11,9 @@
     [opened]="opened"
     style="max-width: 400px"
   >
-    <app-map-filter></app-map-filter>
+    <app-map-filter
+      (triggerFiltering)="updateMeteoritesWithFilter($event)"
+    ></app-map-filter>
   </mat-drawer>
   <mat-drawer-content>
     <app-google-maps [mapLocation]="mapLocation"></app-google-maps>

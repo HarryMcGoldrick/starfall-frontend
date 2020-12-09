@@ -4,14 +4,24 @@
     <mat-card-subtitle
       >Date of impact: {{ selectedMeteorite.year }}</mat-card-subtitle
     >
-    <button mat-icon-button (click)="emitFavourite(selectedMeteorite._id)">
+    <button
+      *ngIf="isUserLoggedIn"
+      mat-icon-button
+      (click)="emitFavourite(selectedMeteorite._id)"
+    >
       <mat-icon [ngStyle]="{ color: selectedMeteorite.favourite ? 'red' : '' }"
         >favorite</mat-icon
       >
     </button>
   </mat-card-header>
   <mat-card-content>
-    <h4><span *ngIf='selectedMeteorite.recclass'>Classification: {{ selectedMeteorite.recclass }}</span> <span *ngIf='selectedMeteorite["mass (g)"]' style="float: right">Mass: {{ selectedMeteorite["mass (g)"] }}g</span></h4>
+    <h4>
+      <span *ngIf="selectedMeteorite.recclass"
+        >Classification: {{ selectedMeteorite.recclass }}</span
+      >
+      <span *ngIf="selectedMeteorite['mass (g)']" style="float: right"
+        >Mass: {{ selectedMeteorite["mass (g)"] }}g</span
+      >
+    </h4>
   </mat-card-content>
-
 </mat-card>
