@@ -18,6 +18,7 @@ export class CardInfoWindowComponent implements OnInit {
     this.isUserLoggedIn = this.userService.hasCurrentUser()
   }
 
+  // Output the favourite to the parent component for saving to database
   emitFavourite(meteoriteId: string): void {
     this.selectedMeteorite.favourite = !this.selectedMeteorite.favourite;
     this.updateFavourite.emit(meteoriteId);

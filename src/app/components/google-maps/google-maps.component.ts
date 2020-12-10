@@ -33,6 +33,8 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.height = window.innerHeight;
     this.width = window.innerWidth;
+
+    // Get the meteorites as json and assign them as meteorite objects
     this.meteoriteApi.getAllMeteorites().subscribe(res => {
       res.forEach(meteorite => {
         const meteoriteRef = new Meteorite();
@@ -42,20 +44,22 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
     });
   }
 
+  // Opens the google maps info window containing meteorite data
   openInfoWindow(meteorite: Meteorite, marker: MapMarker): void {
     this.selectedMeteorite = meteorite;
     this.infoWindow.open(marker);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // When a location is entered on the search bar, pan to the selected location
     if (this.googleMaps && changes.mapLocation) {
-      // this.center = changes.mapLocation.currentValue;
       this.googleMaps.panTo(changes.mapLocation.currentValue);
       this.zoom = 10;
     }
   }
 
   updateMeteoritesWithFilter(formBody): void {
+    // If radius is present then local filtering has been enabled therefore get the current lat lng of the map.
     if (formBody.radius) {
       const currentLocation = this.googleMaps.getCenter()
       formBody.lat = currentLocation.lat();
@@ -63,6 +67,7 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
     }
     const queryString = this.createQueryStringFromObject(formBody)
     this.meteorites = [];
+    // Get the meteorites as json that match the selected filters and assign them as meteorite objects
     this.meteoriteApi.getAllMeteoritesFiltered(queryString).subscribe(res => {
       res.forEach(meteorite => {
         const meteoriteRef = new Meteorite();

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  // TODO better validation
+  isError: boolean = false;
   loginForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
@@ -29,9 +29,13 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit(): void {
     const { username, password } = this.loginForm.value;
+    // After successful login, navigate to main map page
     this.loginService.login(username, password).subscribe(res => {
       this.router.navigateByUrl('/');
-    }, error => console.log(error));
+    }, error => {
+      console.log(error);
+      this.isError = true;
+    });
   }
 
 }

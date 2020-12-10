@@ -39,6 +39,7 @@ import { CardFavouriteComponent } from './components/card-favourite/card-favouri
 import { MapFilterComponent } from './components/map-filter/map-filter.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { UserFavouritesComponent } from './components/user-favourites/user-favourites.component';
+import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { UserFavouritesComponent } from './components/user-favourites/user-favou
     CardFavouriteComponent,
     MapFilterComponent,
     DataTableComponent,
+    RegistrationPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,9 @@ export class LoginService {
         this.userService.updateCurrentUser(new User(username));
         localStorage.setItem('id_token', JSON.stringify(res.token));
         return res;
+      }, error => {
+        console.log(error);
+        return error;
       })
     );
   }
@@ -34,6 +37,10 @@ export class LoginService {
         return res;
       })
     );
+  }
+
+  register(username: string, password: string): Observable<string> {
+    return this.http.post<string>(`${this.API_URL}/register`, { username, password })
   }
 
 }

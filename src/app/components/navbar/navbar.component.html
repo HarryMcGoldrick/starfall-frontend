@@ -13,7 +13,7 @@
       <mat-icon>settings</mat-icon>
     </button>
   </span>
-  <span *ngIf="!enableSearchBar" class="icon-button">
+  <span *ngIf="!enableSearchBar && isMapPage" class="icon-button">
     <button mat-icon-button (click)="triggerTableView()">
       Table
       <mat-icon>table</mat-icon>
@@ -34,9 +34,6 @@
     </mat-menu>
   </span>
 
-  <!-- <a class="profile-link" href="/user/{{ user.username }}">{{
-    user.username
-  }}</a> -->
   <span *ngIf="!user && !enableSearchBar"
     ><a class="profile-link" href="/login">Login</a></span
   >

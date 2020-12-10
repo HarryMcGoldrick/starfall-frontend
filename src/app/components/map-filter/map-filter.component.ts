@@ -29,9 +29,11 @@ export class MapFilterComponent implements OnInit {
   constructor(private meteoriteService: MeteoriteService) { }
 
   ngOnInit(): void {
+    // Gets the options for the classification autocomplete input
     this.meteoriteService.getAllClassifications().subscribe(value => {
       this.options = value;
     })
+    // Filters the classifications when the user inputs text
     this.filteredOptions = this.filterForm.controls.classification.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
@@ -64,6 +66,7 @@ export class MapFilterComponent implements OnInit {
       radius
     }
 
+    // Output the formbody so it can be sent to the map page
     this.triggerFiltering.emit(formBody);
 
     //Prevent spam requests

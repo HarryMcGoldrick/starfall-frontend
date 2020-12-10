@@ -45,13 +45,16 @@ export class NavbarComponent implements OnInit {
     this.enableFilterDrawer.emit()
   }
 
+  // Send location to map page when user enters a location
   handleAddressChange($event): void {
     const location = { lat: $event.geometry.location.lat(), lng: $event.geometry.location.lng() };
     this.searchLocation.emit(location);
   }
 
+  // Clears the local storage of user data and navigates to map page
   logout() {
     this.userService.removeCurrentUser();
+    // Reload is necessary as navbar won't update automatically
     this.router.navigateByUrl('/').then(() => location.reload())
   }
 }

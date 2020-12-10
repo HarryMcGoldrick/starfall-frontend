@@ -1,22 +1,22 @@
 <mat-card>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
     <div>
-      <mat-form-field appearance="standard">
+      <p *ngIf="isError" class="error-text">Error Login failed</p>
+
+      <h1 style="text-align: center">Login</h1>
+      <mat-form-field appearance="standard" class="form-input">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Placeholder" formControlName="username" />
+        <input matInput formControlName="username" />
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field appearance="standard">
+      <mat-form-field appearance="standard" class="form-input">
         <mat-label>Password</mat-label>
-        <input
-          matInput
-          placeholder="Placeholder"
-          formControlName="password"
-          type="password"
-        />
+        <input matInput formControlName="password" type="password" />
       </mat-form-field>
     </div>
+    <br />
+    <a href="/register" class="register-text">Not registered?</a>
     <div class="button-row">
       <button
         mat-raised-button
