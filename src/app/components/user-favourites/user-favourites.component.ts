@@ -5,13 +5,13 @@ import { Meteorite } from 'src/app/models/meteorite';
 import { MeteoriteService } from '../../services/meteorite.service';
 
 @Component({
-  selector: 'app-user-page',
-  templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.scss']
+  selector: 'app-user-favourites',
+  templateUrl: './user-favourites.component.html',
+  styleUrls: ['./user-favourites.component.scss']
 })
-export class UserPageComponent implements OnInit {
+export class UserFavouritesComponent implements OnInit {
   favouriteMeteorites: Meteorite[] = [];
-
+  isLoading = true;
   constructor(private meteoriteService: MeteoriteService) { }
 
   ngOnInit(): void {
@@ -19,11 +19,13 @@ export class UserPageComponent implements OnInit {
 
     this.meteoriteService.getFavourites(username).pipe(
       mergeMap(res => {
+        this.isLoading = true;
         const favourites = res.map(id => this.meteoriteService.getMeteorite(id));
         return forkJoin(favourites);
       })
     ).subscribe(res => {
       this.favouriteMeteorites = res;
+      this.isLoading = false;
     });
   }
 

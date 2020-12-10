@@ -10,3 +10,16 @@
 .mat-dialog-content::-webkit-scrollbar-track {
     background: #222222;
 }
+
+::ng-deep .mat-dialog-container {
+    background: #121212 !important;
+}
+
+::ng-deep .mat-paginator-outer-container {
+    background: #121212 !important;
+}
+
+::ng-deep .mat-table {
+    background: #121212 !important;
+
+}

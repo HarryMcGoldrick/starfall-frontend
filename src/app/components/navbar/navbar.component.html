@@ -26,7 +26,7 @@
       <span style="margin-left: 5px">{{ user.username }}</span>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/user/{{ user.username }}">
+      <button mat-menu-item (click)="triggerFavouriteView()">
         <mat-icon>favorite</mat-icon>
         <span>Favourites</span>
       </button>

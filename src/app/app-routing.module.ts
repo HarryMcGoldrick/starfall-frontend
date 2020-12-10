@@ -3,13 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { MapPageComponent } from './pages/map-page/map-page.component';
-import { UserPageComponent } from './pages/user-page/user-page.component';
 
 const routes: Routes = [
   { path: '', component: MapPageComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard] },
-  { path: 'user/:id', component: UserPageComponent },
-  { path: '**', component: MapPageComponent } // TODO 404 page
+  { path: '**', component: MapPageComponent }
 ];
 
 @NgModule({

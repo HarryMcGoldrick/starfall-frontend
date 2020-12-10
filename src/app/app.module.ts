@@ -23,6 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './pages/app/app.component';
@@ -34,10 +35,10 @@ import { MapPageComponent } from './pages/map-page/map-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
-import { UserPageComponent } from './pages/user-page/user-page.component';
 import { CardFavouriteComponent } from './components/card-favourite/card-favourite.component';
 import { MapFilterComponent } from './components/map-filter/map-filter.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { UserFavouritesComponent } from './components/user-favourites/user-favourites.component';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     MapPageComponent,
     LoginPageComponent,
     LoginFormComponent,
-    UserPageComponent,
+    UserFavouritesComponent,
     CardFavouriteComponent,
     MapFilterComponent,
     DataTableComponent,
@@ -80,7 +81,8 @@ import { DataTableComponent } from './components/data-table/data-table.component
     MatMenuModule,
     MatDialogModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }, { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { DataTableComponent } from '../data-table/data-table.component';
+import { UserFavouritesComponent } from '../user-favourites/user-favourites.component';
 
 @Component({
   selector: 'app-navbar',
@@ -30,6 +31,10 @@ export class NavbarComponent implements OnInit {
 
   triggerTableView() {
     this.dialog.open(DataTableComponent);
+  }
+
+  triggerFavouriteView() {
+    this.dialog.open(UserFavouritesComponent);
   }
 
   triggerSearch(): void {

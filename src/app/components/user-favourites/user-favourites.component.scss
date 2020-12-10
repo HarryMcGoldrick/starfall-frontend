@@ -17,3 +17,7 @@
 .card-list::-webkit-scrollbar-track {
     background: linear-gradient(90deg,#121212,#201c29 1px,#17141d 0,#17141d);
 }
+
+::ng-deep .mat-dialog-container {
+    background: #121212 !important;
+}
