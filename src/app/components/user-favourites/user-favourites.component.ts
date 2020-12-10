@@ -17,6 +17,8 @@ export class UserFavouritesComponent implements OnInit {
   ngOnInit(): void {
     const { username } = JSON.parse(localStorage.getItem('userObj'));
 
+    // gets the array of user favourited meteorites
+    // mergeMap is used to flaten an otherwise nested subscribe
     this.meteoriteService.getFavourites(username).pipe(
       mergeMap(res => {
         this.isLoading = true;

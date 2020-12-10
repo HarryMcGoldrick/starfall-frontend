@@ -15,6 +15,8 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
 
   @Input() mapLocation;
 
+  @Output() updateFavourite = new EventEmitter();
+
   selectedMeteorite: Meteorite;
   meteorites: Meteorite[] = [];
 
@@ -84,5 +86,9 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
         return obj[key]
       }
     }).map(([key, val]) => `${key}=${val}`).join("&");
+  }
+
+  passFavouriteToParent(meteoriteId) {
+    this.updateFavourite.emit(meteoriteId)
   }
 }

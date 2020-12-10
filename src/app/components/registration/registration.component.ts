@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit {
       this.router.navigateByUrl("/login").then(() => location.reload());
     },
       error => {
-        console.log(error)
+        console.log(error);
         this.isError = true;
       })
   }

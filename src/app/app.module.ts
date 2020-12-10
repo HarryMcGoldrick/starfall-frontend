@@ -4,15 +4,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
+/* Material Imports */
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input/';
 import { MatButtonModule } from '@angular/material/button';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -25,7 +28,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { AppRoutingModule } from './app-routing.module';
+/* User Imports */
 import { AppComponent } from './pages/app/app.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -86,6 +89,7 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
     MatPaginatorModule,
     MatProgressSpinnerModule
   ],
+  // Enable use of the auth interceptor and standardise the moment date format to UTC
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }, { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
   bootstrap: [AppComponent]
 })

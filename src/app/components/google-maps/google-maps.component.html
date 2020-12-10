@@ -15,6 +15,7 @@
   <map-info-window [options]="infoWindowOptions">
     <app-card-info-window
       [selectedMeteorite]="selectedMeteorite"
+      (updateFavourite)="passFavouriteToParent($event)"
     ></app-card-info-window>
   </map-info-window>
 </google-map>

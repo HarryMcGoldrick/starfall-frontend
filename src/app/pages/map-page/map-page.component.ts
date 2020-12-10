@@ -46,19 +46,23 @@ export class MapPageComponent implements OnInit {
     }
   }
 
-  updateFavourite(meteoriteId: string): void {
+  // Update the current users favourite meteorites with the given meteoriteId
+  updateUserFavourite(meteoriteId: string): void {
     this.favourites.push(meteoriteId);
     this.meteoriteService.updateFavourite(meteoriteId);
   }
 
+  // Update the current map location so the google-maps-component can pan to it
   handleAddressChange($event): void {
     this.mapLocation = $event;
   }
 
+  // Opens the side drawer
   triggerFilterDrawer(): void {
     this.opened = !this.opened;
   }
 
+  // Pass the filters from map-filter-component to google-maps-component
   updateMeteoritesWithFilter($event): void {
     this.googleMapsComponent.updateMeteoritesWithFilter($event)
   }

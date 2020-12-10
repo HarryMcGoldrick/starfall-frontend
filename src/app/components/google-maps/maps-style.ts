@@ -1,3 +1,4 @@
+// Generaeted style for the google map
 export const mapStyle: google.maps.MapTypeStyle[] = [
   {
     'elementType': 'geometry',

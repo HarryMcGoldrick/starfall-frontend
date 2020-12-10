@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
   constructor(public userService: UserService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    // Prevents the navbar icon buttons being shown if not on the correct page
     if (window.location.href === 'http://localhost:4200/') {
       this.isMapPage = true;
     }

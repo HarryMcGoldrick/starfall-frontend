@@ -16,6 +16,9 @@
     ></app-map-filter>
   </mat-drawer>
   <mat-drawer-content>
-    <app-google-maps [mapLocation]="mapLocation"></app-google-maps>
+    <app-google-maps
+      [mapLocation]="mapLocation"
+      (updateFavourite)="updateUserFavourite($event)"
+    ></app-google-maps>
   </mat-drawer-content>
 </mat-drawer-container>

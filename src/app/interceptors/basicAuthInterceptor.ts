@@ -12,7 +12,7 @@ import { LoginService } from '../services/login.service';
 @Injectable()
 export class BasicAuthInterceptor implements HttpInterceptor {
     constructor(private loginService: LoginService) { }
-
+    // Send the jwt token with any network requests if it exists
     intercept(
         req: HttpRequest<any>,
         next: HttpHandler

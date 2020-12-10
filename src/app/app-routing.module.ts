@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: MapPageComponent },
   { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegistrationPageComponent, canActivate: [AuthGuard] },
-  { path: '**', component: MapPageComponent }
+  { path: '**', component: MapPageComponent } // Redirects to main page on 404
 ];
 
 @NgModule({
