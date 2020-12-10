@@ -26,12 +26,20 @@ export class MeteoriteService {
     return this.http.get<Meteorite[]>(`${this.API_URL}/meteorites`);
   }
 
+  getAllMeteoritesPaginated(pageIndex, pageSize): Observable<Meteorite[]> {
+    return this.http.get<Meteorite[]>(`${this.API_URL}/meteorites/paginated?meteoritePage=${pageIndex}&meteoriteAmount=${pageSize}`);
+  }
+
   getAllMeteoritesFiltered(queryString): Observable<Meteorite[]> {
     return this.http.get<Meteorite[]>(`${this.API_URL}/meteorites/filter?${queryString}`);
   }
 
   getMeteorite(id): Observable<Meteorite> {
     return this.http.get<Meteorite>(`${this.API_URL}/meteorites/${id}`);
+  }
+
+  getMeteoriteCount(): Observable<number> {
+    return this.http.get<number>(`${this.API_URL}/meteorites/count`);
   }
 
   updateFavourite(meteoriteId: string): any {

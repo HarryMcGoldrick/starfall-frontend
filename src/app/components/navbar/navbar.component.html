@@ -13,6 +13,12 @@
       <mat-icon>settings</mat-icon>
     </button>
   </span>
+  <span *ngIf="!enableSearchBar" class="icon-button">
+    <button mat-icon-button (click)="triggerTableView()">
+      Table
+      <mat-icon>table</mat-icon>
+    </button>
+  </span>
   <span *ngIf="!enableSearchBar" class="spacer"></span>
   <span *ngIf="user && !enableSearchBar">
     <button mat-button [matMenuTriggerFor]="menu">

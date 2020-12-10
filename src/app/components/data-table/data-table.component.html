@@ -1,0 +1,49 @@
+<div class="mat-dialog">
+  <div mat-dialog-title>
+    <h1>Meteorite table</h1>
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = $event"
+    >
+    </mat-paginator>
+  </div>
+
+  <div mat-dialog-content style="width: 1000px">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8"
+      style="width: 100%"
+    >
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="recclass">
+        <th mat-header-cell *matHeaderCellDef>Classification</th>
+        <td mat-cell *matCellDef="let row">{{ row.recclass }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="mass">
+        <th mat-header-cell *matHeaderCellDef>Mass</th>
+        <td mat-cell *matCellDef="let row">{{ row["mass (g)"] }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="geolocation">
+        <th mat-header-cell *matHeaderCellDef>Geolocation</th>
+        <td mat-cell *matCellDef="let row">{{ row.GeoLocation }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef>Year</th>
+        <td mat-cell *matCellDef="let row">{{ row.year }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

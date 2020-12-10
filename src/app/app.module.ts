@@ -20,7 +20,9 @@ import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/m
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './pages/app/app.component';
@@ -35,6 +37,7 @@ import { BasicAuthInterceptor } from './interceptors/basicAuthInterceptor';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { CardFavouriteComponent } from './components/card-favourite/card-favourite.component';
 import { MapFilterComponent } from './components/map-filter/map-filter.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
 
 
 @NgModule({
@@ -50,6 +53,7 @@ import { MapFilterComponent } from './components/map-filter/map-filter.component
     UserPageComponent,
     CardFavouriteComponent,
     MapFilterComponent,
+    DataTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +78,9 @@ import { MapFilterComponent } from './components/map-filter/map-filter.component
     MatSlideToggleModule,
     MatAutocompleteModule,
     MatMenuModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }, { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }],
   bootstrap: [AppComponent]

@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { DataTableComponent } from '../data-table/data-table.component';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +17,7 @@ export class NavbarComponent implements OnInit {
   isMapPage = false;
   enableSearchBar = false;
   user: User;
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(public userService: UserService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (window.location.href === 'http://localhost:4200/') {
@@ -24,6 +26,10 @@ export class NavbarComponent implements OnInit {
     this.userService.currentUser.subscribe(currentUser => {
       this.user = currentUser;
     });
+  }
+
+  triggerTableView() {
+    this.dialog.open(DataTableComponent);
   }
 
   triggerSearch(): void {
