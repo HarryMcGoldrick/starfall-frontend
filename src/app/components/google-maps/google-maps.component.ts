@@ -27,10 +27,6 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
   markerOptions: google.maps.MarkerOptions = { draggable: false };
   infoWindowOptions: google.maps.InfoWindowOptions = { maxWidth: 400 };
 
-  // TODO markerIcon: google.maps.Icon = { add nicer marker
-  //   url: 'assets/meteorite-maps-marker.png',
-  //   scaledSize: new google.maps.Size(32, 32)
-  // };
 
   constructor(private meteoriteApi: MeteoriteService) { }
 
@@ -59,7 +55,13 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
     }
   }
 
-  updateMeteoritesWithFilter(queryString): void {
+  updateMeteoritesWithFilter(formBody): void {
+    if (formBody.radius) {
+      const currentLocation = this.googleMaps.getCenter()
+      formBody.lat = currentLocation.lat();
+      formBody.lng = currentLocation.lng();
+    }
+    const queryString = this.createQueryStringFromObject(formBody)
     this.meteorites = [];
     this.meteoriteApi.getAllMeteoritesFiltered(queryString).subscribe(res => {
       res.forEach(meteorite => {
@@ -68,5 +70,14 @@ export class GoogleMapsComponent implements OnInit, OnChanges {
         this.meteorites.push(meteoriteRef);
       });
     });
+  }
+
+  //Creates a query string using the formbody attributes, removes undefined or empty variables and parses them into the correct format
+  createQueryStringFromObject(obj) {
+    return Object.entries(obj).filter(([key]) => {
+      if (obj[key] != '' || obj[key] != undefined) {
+        return obj[key]
+      }
+    }).map(([key, val]) => `${key}=${val}`).join("&");
   }
 }

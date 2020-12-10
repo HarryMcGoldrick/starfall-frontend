@@ -1,5 +1,25 @@
 <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" autocomplete="off">
   <div class="filter-fields-container">
+    <h3>Filter by location</h3>
+    <p style="font-size: 6">
+      *If specified uses the maps current location - use the search above to
+      choose precise locations
+    </p>
+    <hr />
+    <br />
+    <mat-slide-toggle
+      (change)="updateLocationFilteringOption($event)"
+      class="filter-field"
+      style="margin-bottom: 1rem"
+      >Enable local location filtering</mat-slide-toggle
+    >
+    <mat-form-field appearance="fill" class="filter-field">
+      <mat-label>Radius</mat-label>
+      <input matInput type="number" formControlName="radius" />
+      <span matSuffix>km</span>
+    </mat-form-field>
+  </div>
+  <div class="filter-fields-container">
     <h3>Filter by fields</h3>
     <hr />
     <br />
@@ -78,7 +98,7 @@
         class="filter-field-button"
         color="primary"
         type="submit"
-        [disabled]="!filterForm.valid"
+        [disabled]="!filterForm.valid || formSubmitted"
       >
         Update
       </button>

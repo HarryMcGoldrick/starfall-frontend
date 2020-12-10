@@ -12,6 +12,7 @@ import { MeteoriteService } from 'src/app/services/meteorite.service';
 export class MapFilterComponent implements OnInit {
   @Output() triggerFiltering = new EventEmitter<any>();
   @Output() triggerFavourites = new EventEmitter<any>();
+  formSubmitted = false;
   options: string[] = [];
   filteredOptions: Observable<string[]>;
   filterForm = new FormGroup({
@@ -21,7 +22,8 @@ export class MapFilterComponent implements OnInit {
     minMass: new FormControl(0, Validators.min(0)),
     startDate: new FormControl(''),
     endDate: new FormControl(''),
-    meteoriteAmount: new FormControl(100)
+    meteoriteAmount: new FormControl(100),
+    radius: new FormControl({ value: 50, disabled: true })
   });
 
   constructor(private meteoriteService: MeteoriteService) { }
@@ -47,38 +49,31 @@ export class MapFilterComponent implements OnInit {
     }
 
     let { name } = this.filterForm.value;
-    const { classification, mass, meteoriteAmount, fall } = this.filterForm.value;
+    const { classification, mass, meteoriteAmount, fall, radius } = this.filterForm.value;
 
     //Names in db are in title case
     name = this.titleCase(name);
-    const formBody = {
+    let formBody = {
       name,
       classification,
       fall,
       mass,
       startDate,
       endDate,
-      meteoriteAmount
+      meteoriteAmount,
+      radius
     }
 
-    const queryString = this.createQueryStringFromObject(formBody)
-    this.triggerFiltering.emit(queryString);
+    this.triggerFiltering.emit(formBody);
 
     //Prevent spam requests
-    this.filterForm.disable();
+    this.formSubmitted = true;
     setTimeout(() => {
-      this.filterForm.enable();
+      this.formSubmitted = false;
     }, 2000)
   }
 
-  //Creates a query string using the formbody attributes, removes undefined or empty variables and parses them into the correct format
-  createQueryStringFromObject(obj) {
-    return Object.entries(obj).filter(([key]) => {
-      if (obj[key] != '' || obj[key] != undefined) {
-        return obj[key]
-      }
-    }).map(([key, val]) => `${key}=${val}`).join("&");
-  }
+
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -89,5 +84,9 @@ export class MapFilterComponent implements OnInit {
   //Covert a string to title case
   titleCase(str) {
     return str.replace(/\w\S*/g, (t) => { return t.charAt(0).toUpperCase() + t.substr(1).toLowerCase() });
+  }
+
+  updateLocationFilteringOption($event) {
+    $event.checked === true ? this.filterForm.controls.radius.enable() : this.filterForm.controls.radius.disable()
   }
 }
