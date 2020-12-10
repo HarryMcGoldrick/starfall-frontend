@@ -1,5 +1,7 @@
 <mat-toolbar colour="secondary">
-  <span *ngIf="!enableSearchBar" routerLink="/">StarFall</span>
+  <span *ngIf="!enableSearchBar" routerLink="/"
+    ><img src="favicon.ico" style="width: 30px" />StarFall</span
+  >
 
   <span *ngIf="!enableSearchBar && isMapPage" class="icon-button">
     <button mat-icon-button (click)="triggerSearch()">
